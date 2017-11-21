@@ -1,5 +1,8 @@
 # kubernetes分布式训练
+[TOC]
+
 ## 作业训练
+
 1. master server process：任务分配
 
 2. 1个或多个trainer process：分布式训练及同步梯度/模型
@@ -13,12 +16,29 @@
 
 
 
-
 ### Master Server Process
+
+The master server process will:
+
+- Partition a dataset into tasks and dispatch tasks to trainers.
+- Keep track of training progress on the dataset with task queue. A training job will iterate on the dataset for a full pass until it goes into next pass.
 
 ### Trainer Process
 
+The trainer process will:
+
+- Request tasks from the master.
+- Work on the tasks
+- Upload gradient to parameter servers, and update local model by downloading new parameters from parameter servers.
+
 ### Parameter Server Process
+
+Parameter server processes通过协作维护parameters。参数被分割在不同的parameter servers。
+
+The parameter server will:
+
+- Receive gradient from the trainers, update its parameters, and give the trainers the latest parameters.
+- Periodically save its parameters to distributed file system by overriding the previous save.
 
 ### 优化算法
 
@@ -30,7 +50,12 @@ trainer和pserver之间的交互取决于选择哪种优化算法
 
 - Asynchronous Stochastic Gradient Descent (async-SGD 异步随机梯度下降)
 
-  ​
+  不同的trainers之间不需要同步，pserver只要接收到新的梯度就会更新参数
 
-  ​
+  - 每个trainer在每n个mini-batches之后上传计算得到的梯度
+  - 每m个mini-batches之后，trainer从pserver上下载新的参数
+  - n和m不一定相等
+
+## 容错性
+
 
