@@ -22,3 +22,15 @@
 
 ### 优化算法
 
+trainer和pserver之间的交互取决于选择哪种优化算法
+
+- Synchronous Stochastic Gradient Descent(sync-SGD 同步随机梯度下降)
+
+  Pserver需要等待所有的trainer完成n-th mini-batch的计算并且接受到他们的梯度，之后才将新的参数广播给每一个tranier。同样每一个trainer需要等待新的参数到达之后才能开始n+1-th mini-batch
+
+- Asynchronous Stochastic Gradient Descent (async-SGD 异步随机梯度下降)
+
+  ​
+
+  ​
+
