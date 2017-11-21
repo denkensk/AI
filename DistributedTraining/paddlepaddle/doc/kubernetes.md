@@ -1,5 +1,12 @@
 # kubernetes分布式训练
-[TOC]
+
+* [kubernetes分布式训练](#kubernetes分布式训练)
+    * [作业训练](#作业训练)
+        * [Master Server Process](#master-server-process)
+        * [Trainer Process](#trainer-process)
+        * [Parameter Server Process](#parameter-server-process)
+        * [优化算法](#优化算法)
+    * [容错性](#容错性)
 
 ## 作业训练
 
