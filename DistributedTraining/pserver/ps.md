@@ -1,12 +1,12 @@
 # Parameter Server
-##Background
+## Background
 
-##Architecture
+## Architecture
 ![Alt text](./pic/pserver_and_trainer.png?raw=false "Title")
-##classify
-###Synchronous
+## classify
+### Synchronous
 ![Alt text](./pic/blog-synchronous.gif?raw=false "Title")
-###Asynchronous
+### Asynchronous
 ![Alt text](./pic/blog-asynchronous.gif?raw=false "Title")
 
 
