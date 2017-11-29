@@ -65,4 +65,16 @@ trainer和pserver之间的交互取决于选择哪种优化算法
 
 ## 容错性
 
+The training job 
+
+- 当master或者pserver停止，training job将会停止，然后通过k8s去启动和恢复。
+
+- 如果至少有一个training在运行的时候，training job将会继续运行。具体的选择根据优化算法：
+
+  - sync-SGD
+
+  - async-SGD
+
+    Since async-SGD does not require synchronization between mini-batches, the system will by definition make process if at least one trainer is running.
+
 
