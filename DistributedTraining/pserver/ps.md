@@ -1,5 +1,11 @@
 # Parameter Server
-[TOC]
+* [Parameter Server](#parameter-server)
+    * [Background](#background)
+    * [Architecture](#architecture)
+    * [classify](#classify)
+        * [Data Parallel Training](#data-parallel-training)
+        * [Model Parallel Training](#model-parallel-training)
+
 
 ## Background
 
@@ -11,9 +17,10 @@
 
 ## Architecture
 
-<div style="text-align: center">
+<div align=center>
 <img src="./pic/pserver_and_trainer.png"/>
 </div>
+
 
 ## classify
 
@@ -23,7 +30,7 @@
 
 数据切分也分为同步和异步两种方式:
 
-<div style="text-align: center">
+<div align=center>
 <img src="./pic/data_parallel_training.png"/>
 </div>
 
@@ -31,7 +38,7 @@
 
 同步是等待每个独立的model传上来的梯度都到齐后，将所有的梯度累加计算平均之后，再更新参数。优点是loss的下降比较稳定，但是缺点比较明显，处理的速度取决于最慢的那个分片的计算时间。
 
-<div style="text-align: center">
+<div align=center>
 <img src="./pic/blog-synchronous.gif"/>
 </div>
 
@@ -39,7 +46,7 @@
 
 异步是不用等待，每个独立的模型的参数直接更新。优点是计算速度快，计算资源能够得到充分的利用，缺点是loss的下降不稳定，抖动大。
 
-<div style="text-align: center">
+<div align=center>
 <img src="./pic/blog-asynchronous.gif"/>
 </div>
 
@@ -53,7 +60,7 @@
 
 模型并行是指让模型的不同部分执行在不同的设备上，worker之间共享同一份数据。
 
-<div style="text-align: center">
+<div align=center>
 <img src="./pic/model_parallel_training.png"/>
 </div>
 
